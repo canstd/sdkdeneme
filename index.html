@@ -2,41 +2,70 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <title>WebGI + GitHub Pages Test</title>
-  <!-- WebGI Viewer SDK -->
+  <title>Pırlanta Borsası</title>
+
+  <!-- Pixotronics WebGI SDK scripti -->
   <script src="https://dist.pixotronics.com/webgi/runtime/viewer-0.9.22.js"></script>
+
   <style>
+    /* Sayfa genel ayarları */
     html, body {
-      margin: 0; padding: 0; 
-      width: 100%; height: 100%;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
       font-family: sans-serif;
     }
+
+    /* Sayfa başlığı için */
     h1 {
       text-align: center;
-      margin-top: 20px;
+      margin: 20px 0;
     }
+
+    /* Dış kap (viewer-container):
+       - Ekranın %80 yüksekliğini kaplayacak
+       - İçerikleri ortalamak için flex ve align/justify kullanıyoruz */
     .viewer-container {
       width: 100%;
       height: 80vh;
-      border: 3px solid blue;
-      box-sizing: border-box;
-      margin: 0 auto;
       display: flex;
+      justify-content: center; /* Yatay ortalama */
+      align-items: center;    /* Dikey ortalama */
+      box-sizing: border-box;
     }
+
+    /* Kare kutu (webgi-square):
+       - 50vh x 50vh boyutlarında bir kutu
+       - Çerçeveyi burada tanımladık */
+    .webgi-square {
+      width: 50vh;            /* Yüksekliğin yarısı kadar genişlik */
+      height: 50vh;           /* Kutuyu kare yapacak eşit yükseklik */
+      border: 3px solid blue; /* Mavi çerçeve */
+      display: flex;          /* İçine koyduğumuz viewer'ı esnetebilmek için flex kullanıyoruz */
+      box-sizing: border-box;
+    }
+
+    /* webgi-viewer elemanı kare kutunun (webgi-square) tamamını kaplar */
     webgi-viewer {
-      flex: 1;
+      flex: 1;       /* Kutu içinde otomatik genişle */
+      display: block;  
     }
   </style>
 </head>
 <body>
-  <h1>WebGI + GitHub Pages Test</h1>
+  <!-- Başlık -->
+  <h1>Pırlanta Borsası</h1>
+
+  <!-- 3D model alanı (SDK Viewer) -->
   <div class="viewer-container">
-    <!-- Burada src yolunu ayarlayacağız. -->
-    <webgi-viewer
-      src="model.glb"
-      style="width: 100%; height: 100%;"
-    ></webgi-viewer>
+    <!-- Kare kutu -->
+    <div class="webgi-square">
+      <webgi-viewer
+        src="https://dist.pixotronics.com/webgi/assets/gltf/cube_diamond_sample.gltf"
+        environment="https://dist.pixotronics.com/webgi/assets/hdr/gem_2.hdr"
+      ></webgi-viewer>
+    </div>
   </div>
 </body>
 </html>
-
